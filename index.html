@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第一视角迷宫 Demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      background: #05070d;
+      color: #dbeafe;
+      font-family: "Segoe UI", "PingFang SC", sans-serif;
+      overflow: hidden;
+    }
+    #hud {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(10, 20, 40, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 360px;
+      backdrop-filter: blur(5px);
+    }
+    #msg {
+      margin-top: 8px;
+      color: #fcd34d;
+      min-height: 18px;
+      font-weight: 600;
+    }
+    #crosshair {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      opacity: .8;
+    }
+    #crosshair::before,
+    #crosshair::after {
+      content: "";
+      position: absolute;
+      background: rgba(148, 163, 184, 0.9);
+    }
+    #crosshair::before { width: 2px; height: 18px; left: 8px; }
+    #crosshair::after { width: 18px; height: 2px; top: 8px; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <div id="hud">
+    <div><strong>第一视角迷宫挑战</strong></div>
+    <div>操作：WASD/方向键移动，Q/E 侧移，鼠标左右旋转视角。</div>
+    <div>障碍：巡逻守卫（红色）会撞退你并扣时间，旋转门（青色）会封路。</div>
+    <div>目标：摸索到出口（绿色）并在倒计时结束前抵达。</div>
+    <div id="msg">点击画面锁定鼠标开始游戏</div>
+  </div>
+  <div id="crosshair"></div>
+  <canvas id="view"></canvas>
+  <script src="game.js"></script>
+</body>
+</html>
